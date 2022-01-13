@@ -18,5 +18,5 @@ Route::get('/', function () {
 });
 
 Route::get('/test', function () {
-    return 'Docker works fine for another repo';
+    return 'Docker is working fine';
 });
