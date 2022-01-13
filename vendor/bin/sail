@@ -1,0 +1,22 @@
+#!/usr/bin/env sh
+
+self=$(realpath $0 >/dev/null 2>&1)
+if [ -z "$self" ]
+then
+    self="$0"
+fi
+
+dir=$(cd "${self%[/\\]*}" > /dev/null; cd '../laravel/sail/bin' && pwd)
+
+if [ -d /proc/cygdrive ]; then
+    case $(which php) in
+        $(readlink -n /proc/cygdrive)/*)
+            # We are in Cygwin using Windows php, so the path must be translated
+            dir=$(cygpath -m "$dir");
+            ;;
+    esac
+fi
+
+export COMPOSER_BIN_DIR=$(cd "${self%[/\\]*}" > /dev/null; pwd)
+
+"${dir}/sail" "$@"
