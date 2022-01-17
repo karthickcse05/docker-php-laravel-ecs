@@ -20,3 +20,7 @@ Route::get('/', function () {
 Route::get('/test', function () {
     return 'Docker is working fine';
 });
+
+Route::get('/demo', function () {
+    return 'Demo on jan 17';
+});
